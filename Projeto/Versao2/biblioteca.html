@@ -19,6 +19,9 @@
             <button onclick="mostrarSecao('alterar')">
                 <i class="fas fa-book-medical icon">Alterar Livro</i>
             </button>
+            <button onclick="mostrarSecao('emprestimo')">
+                <i class="fas fa-book-medical icon">Empréstimo</i>
+            </button>
         </div>
 
         <div id="cadastro" class="hidden" >
@@ -52,6 +55,31 @@
                 <tbody id="lista-livros"></tbody>
             </table>
         </div>
+        
+        <div id="alterar" class="hidden" >
+            <h2>Alterar Livros</h2>
+            <input type="text" id="busca-alterar" placeholder="Buscar por título">
+            <button onclick="buscarLivroParaAlterar()">Buscar</button>
+            
+            <div id="form-alterar" class="hidden">
+                <input type="text" placeholder="Novo nome do Livro" id="novo-titulo">
+                <input type="text" placeholder="Novo autor do Livro" id="novo-autor">
+                <input type="text" placeholder="Novo ano do livro" id="novo-ano">
+                <button onclick="alterarLivro()">Alterar Livro</button>
+            </div>
+        </div>
+
+        <section id="emprestimo">
+            <h2>Página de Empréstimo</h2>
+            <div>
+                <label for="nome livro">Livro:</label>
+                <input type="text" id="livro-emprestimo" placeholder="Digite o título do livro">
+                <label for="nome user">Seu nome:</label>
+                <input type="text" id="usuario" placeholder="Nome do usuário">
+            </div>
+            <button onclick="fazerEmprestimo()">Fazer empréstimo</button>
+            <div id="exibirEmpre"></div>
+        </section>
 
     </div>
     <script src="biblioteca.js"></script>

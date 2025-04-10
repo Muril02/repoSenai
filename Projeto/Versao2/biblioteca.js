@@ -5,7 +5,8 @@ const mostrarSecao = (secao) =>{
     //  Esconde todas as seções
     document.getElementById("cadastro").classList.add("hidden")
     document.getElementById("consulta").classList.add("hidden")
-    // document.getElementById("alterar").classList.add("hidden")
+    document.getElementById("alterar").classList.add("hidden")
+    document.getElementById("emprestimo").classList.add("hidden")
 
     // Mostra a seção selecionada
     document.getElementById(secao).classList.remove("hidden")
@@ -36,10 +37,41 @@ const buscarLivro = () =>{
     atualizarLista(resultados)
 }
 
-// const buscarLivroParaAlterar = () =>{
-//     const busca = document.getElementById("busca-alterar").value.toLowerCase()
-//     livroParaAlternar = biblioteca.find((livro) => livro.titulo.toLowerCase().includes(busca))
-// }
+const buscarLivroParaAlterar = () =>{
+    const busca = document.getElementById("busca-alterar").value.toLowerCase()
+    livroParaAlternar = biblioteca.find((livro) => livro.titulo.toLowerCase().includes(busca))
+
+    if(livroParaAlternar){
+        document.getElementById("form-alterar").classList.remove("hidden")
+        document.getElementById("novo-titulo").value = livroParaAlternar.titulo
+        document.getElementById("novo-autor").value = livroParaAlternar.autor
+        document.getElementById("novo-ano").value = livroParaAlternar.ano
+    }else{
+        alert("Livro não encontrado")
+    }
+
+}
+
+const alterarLivro = () =>{
+    if(livroParaAlternar){
+        const novoTitulo = document.getElementById("novo-titulo").value
+        const novoAutor = document.getElementById("novo-autor").value
+        const novoAno = parseInt(document.getElementById("novo-ano").value)
+
+        if(novoTitulo && novoAno && novoAutor){
+            livroParaAlternar.titulo = novoTitulo
+            livroParaAlternar.autor = novoAutor
+            livroParaAlternar.ano = novoAno
+
+            atualizarLista()
+            alert("Livro alterado com sucesso")
+            document.getElementById("forma-alterar").classList.add("hidden")
+        }else{
+            alert("Por favor, preencha todos os campos")
+        }
+    }
+}
+
 
 const atualizarLista = (lista = biblioteca) =>{
     const tabela = document.getElementById("lista-livros")
@@ -54,4 +86,17 @@ const atualizarLista = (lista = biblioteca) =>{
         `;
         tabela.appendChild(linha)
     })
+}
+
+const fazerEmprestimo = () =>{
+    const livroEmprestimo = document.getElementById("livro-emprestimo").value.toLowerCase()
+    const usuario = document.getElementById("usuario").value.toLowerCase()
+    const ex = document.getElementById("exibirEmpre")
+
+    const livro = biblioteca.find((livro) => livro.titulo.toLowerCase().includes(livroEmprestimo))
+    if(livro){
+        ex.innerHTML += `Livro emprestado: ${livroEmprestimo} - Usuário: ${usuario}<br>`
+    }else{
+        alert("Livro não encontrado")
+    }
 }
