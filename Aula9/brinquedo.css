@@ -1,0 +1,30 @@
+header div{
+    display: flex;
+    justify-content: center;
+}
+
+.menu{
+    display: grid;
+    justify-content: center;
+}
+
+.menutit{
+    display: flex;
+    justify-content:center;
+}
+
+.tit{
+    text-align: center;
+}
+
+.exibicao{
+    margin: 30px auto;
+}
+
+.item-boton{
+    margin: 10px 10px;
+}
+
+.dflex{
+    display: flex;
+}

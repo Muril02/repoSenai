@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mecanica.css">
+    <title>Mecânica</title>
+</head>
+<body>
+    <section class="container">
+        <h1>Mecânica Apenas</h1>
+        <div class="list">
+            <ol>
+                <li><button onclick="receberServico('revisao')">Revisão</button></li>
+                <li><button onclick="receberServico('oleo')">Troca de óleo</button></li>
+                <li><button onclick="receberServico('motor')">Troca de motor</button></li>
+            </ol>
+        </div>
+        <div id="exibir"></div>
+        <div id="resumo"></div>
+        <div id="valor"></div>
+    </section>
+
+    <script src="mecanica.js"></script>
+</body>
+</html>

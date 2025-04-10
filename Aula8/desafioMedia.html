@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade</title>
+</head>
+<body>
+    <input type="text" id="matrizMedia" placeholder="Digite 9 números separados por espaço (3x3)">
+    <button onclick="fazerMedia()">Contar Média</button>
+    <p id="resultadosMedia"></p>
+
+    <script>
+        function fazerMedia(){
+            const vetor = document.getElementById("matrizMedia").value.split(" ").map(Number);
+            let media = 0
+            for(let i = 0; i < vetor.lenght; i++){
+                soma += vetor[i]
+                media = soma / vetor
+            }
+
+            document.getElementById("resultadosMedia").innerHTML = "Média: " +media ;
+        }
+    </script>
+</body>
+</html>

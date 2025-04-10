@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="notas.css">
+    <title>Notas</title>
+</head>
+<body>
+    <section>
+        <h1>Calculo de Notas</h1>
+        <div class="info">
+            <label for="Nome do Aluno"></label>
+            <input type="text" id="nome" placeholder="Digite o nome do aluno">
+            <label for="Nota um"></label>
+            <input type="number" id="nota1" placeholder="Digite a primeira nota do aluno" max="10">
+            <label for="Nota dois"></label>
+            <input type="number" id="nota2" placeholder="Digite a segunda nota do aluno" max="10">
+            <label for="Nota tres"></label>
+            <input type="number" id="nota3" placeholder="Digite a terceira nota do aluno" max="10">
+            <label for="Trabalhos"></label>
+            <input type="number" id="trabalhos" placeholder="Digite quantos trabalhos o aluno fez" max="10">
+
+
+            <button type="submit" onclick="calcularNota()">Calcular nota</button>
+        </div>
+            <div id="resultado"></div>
+            <div id="resultadoFinal"></div>
+    </section>
+
+    <script src="notas.js"></script>
+</body>
+</html>

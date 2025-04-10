@@ -1,0 +1,17 @@
+header div{
+    display: flex;
+    justify-content: center;
+}
+
+.menu{
+    display: grid;
+    justify-content: center;
+}
+
+.tit{
+    text-align: center;
+}
+
+.exibicao{
+    margin: 30px auto;
+}
