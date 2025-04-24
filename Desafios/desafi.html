@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas</title>
+</head>
+<body>
+    <h1>Conversor de Moedas</h1>
+    <input type="text" id="switch" placeholder="Escolha para qual moeda converter">
+    <input type="number" id="valorMoeda" placeholder="Insira o valor">
+
+    <button onclick="converterValor()">Converter</button>
+    <div id="exibicao"></div>
+
+    <script>
+        const converterValor = () =>{
+            const conversao = document.getElementById("switch").value
+            let valorMoeda = parseFloat(document.getElementById("valorMoeda").value)
+            let resultado
+
+            switch(conversao){
+                case "Dolar":
+                    resultado = valorMoeda * 5.86
+                    break
+                case "Euro":
+                    resultado = valorMoeda * 6.59
+                    break
+                default:
+                    resultado = "Não foi possivel calcular"
+            }
+            let exibir = document.getElementById("exibicao")
+            exibir.innerHTML = `Resultado: ${resultado.toFixed(2)}`
+        }
+    </script>
+</body>
+</html>

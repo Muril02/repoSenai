@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação de Notas</title>
+</head>
+<body>
+    <h1>Classificação de Notas</h1>
+    <input type="text" id="nota" placeholder="Digite a nota">
+
+    <button onclick="classificarNota()">Classificar</button>
+    <div id="exibicao"></div>
+
+    <script>
+        const classificarNota = () =>{
+            const nota = parseInt(document.getElementById("nota").value)
+            let resultado
+
+            switch(nota){
+                case 10:
+                case 9:
+                    resultado = "Nota A"
+                    break
+                case 8:
+                case 7:
+                    resultado = "Nota B"
+                    break
+                case 6:
+                case 5:
+                    resultado = "Nota C"
+                    break
+                case 4:
+                case 3:
+                    resultado = "Nota D"
+                    break
+                case 2:
+                case 1:
+                case 0:
+                    resultado = "Nota F"
+                    break
+                default:
+                    resultado = "Não foi possivel calcular"
+            }
+            let exibir = document.getElementById("exibicao")
+            exibir.innerHTML = `Resultado: ${resultado}`
+            console.log(nota);
+            
+        }
+    </script>
+</body>
+</html>

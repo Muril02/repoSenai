@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Roup</title>
+</head>
+<body>
+    <section>
+        <h1>Loja</h1>
+        <p>Selecione a peça que irá comprar</p>
+        <div>
+            <select name="" id="produtos">
+                <option value=""></option>
+                <option value="camisa">Camisa</option>
+                <option value="calca">Calça</option>
+                <option value="vestido">Vestido</option>
+            </select>
+            <input type="number" placeholder="Digite a quantidade" id="quantidade">
+        </div>
+        <button onclick=compras()>Comprar</button>
+        <div id="exibir"></div>
+        
+    </section>
+
+    <script>
+
+    const compras = () =>{
+        const produto = document.getElementById("produtos").value
+        const exibir = document.getElementById("exibir")
+        const quantidade = document.getElementById("quantidade").value
+        
+        switch(produto){
+            case "camisa":
+                valor = 40.99 * quantidade
+                divisor = valor / quantidade
+                exibir.innerHTML = `<div><h4>Sua Compra foi R$${valor}</h4>
+                <p>Cada ${produto} foi R$${divisor}</p>
+        </div>`
+        break
+            case "calca":
+                valor = 232.67 * quantidade
+                divisor = valor / quantidade
+                exibir.innerHTML = `<div><h4>Sua Compra foi R$${valor}</h4>
+                <p>Cada ${produto} foi R$${divisor}</p>
+        </div>`
+        break
+            case "vestido":
+                valor = 155.89 * quantidade
+                divisor = valor / quantidade
+                exibir.innerHTML = `<div><h4>Sua Compra foi R$${valor}</h4>
+                <p>Cada ${produto} foi R$${divisor}</p>
+        </div>`
+        break
+            default:
+                "Não deu"
+                break  
+        }
+    }
+    </script>
+</body>
+</html>

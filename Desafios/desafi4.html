@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estações do ano</title>
+</head>
+<body>
+    <h1>Estações do ano</h1>
+    <input type="number" id="estacao" placeholder="Digite o número do mês">
+
+    <button onclick="estac()">Ver</button>
+    <div id="exibicao"></div>
+
+    <script>
+        const estac = () =>{
+            const estacao = parseInt(document.getElementById("estacao").value)
+            let resultado
+
+            switch(estacao){
+                case 12:
+                case 1:
+                case 2:
+                    resultado = "Verão"
+                    break
+                case 3:
+                case 4:
+                case 5:
+                    resultado = "Outono"
+                    break
+                case 6:
+                case 7:
+                case 8:
+                    resultado = "Inverno"
+                    break
+                case 9:
+                case 10:
+                case 11:
+                    resultado = "Primavera"
+                    break
+                default:
+                    resultado = "Este mês não existe"
+            }
+            let exibir = document.getElementById("exibicao")
+            exibir.innerHTML = `Resultado: ${resultado}`
+            
+        }
+    </script>
+</body>
+</html>

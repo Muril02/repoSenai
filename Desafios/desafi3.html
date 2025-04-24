@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="desafi3.css">
+    <title>Calculo de formas</title>
+</head>
+<body>
+    <h1>Calculo de formas</h1>
+    <input type="text" placeholder="Digite a sua forma" id="forma" onchange="mudarSec(value)">
+
+    <div class="hidden" id="quadrado">
+        <input type="number" id="baseQuad" placeholder="Digite o lado do seu quadrado">
+    </div>
+
+    <div class="hidden" id="triangulo">
+        <input type="number" id="baseTri" placeholder="Digite a base do seu triângulo">
+        <input type="number" id="alturaTri" placeholder="Digite a altura do seu triângulo">
+    </div>
+
+    <div class="hidden" id="circulo">
+        <input type="number" id="raio" placeholder="Digite o valor do raio do circulo">
+    </div>
+
+
+    <button onclick="calcularForma()">Calcular</button>
+    <div id="exibicao"></div>
+
+    <script>
+      
+        const mudarSec = (forma) =>{
+            document.getElementById("quadrado").classList.add("hidden")
+            document.getElementById("circulo").classList.add("hidden")
+            document.getElementById("triangulo").classList.add("hidden")
+            
+            document.getElementById(forma).classList.remove("hidden")
+        }
+
+      
+        const calcularForma = () =>{
+            const raio = parseInt(document.getElementById("raio").value)
+            const baseQuad = parseInt(document.getElementById("baseQuad").value)
+            const baseTri = parseInt(document.getElementById("baseTri").value)
+            const alturaTri = parseInt(document.getElementById("alturaTri").value)
+            const forma = document.getElementById("forma").value
+
+            let resultado
+
+            switch(forma){
+                case "circulo":
+                    resultado = 3.14 * (raio**2) 
+                    break
+                case "triangulo":
+                    resultado = (baseTri * alturaTri) / 2
+                    break
+                case "quadrado":
+                    resultado = baseQuad * baseQuad
+                    break
+                default:
+                    resultado = "Não foi possivel calcular"
+            }
+            let exibir = document.getElementById("exibicao")
+            exibir.innerHTML = `Resultado: ${resultado.toFixed(2)}`
+
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mecânica</title>
+</head>
+<body>
+    <h1>Mecânica apenas</h1>
+    <section>
+        <div>
+            <p>Escolha a marca do seu carro</p>
+            <select name="" id="carros">
+                <option value=""></option>
+                <option value="fiat">Fiat</option>
+                <option value="honda">Honda</option>
+                <option value="volkswagen">Volkswagen</option>
+                <option value="ford">Ford</option>
+            </select>
+
+            <input type="text" placeholder="Digite o nome do carro" id="nome">
+            <input type="text" placeholder="Digite o ano do carro" id="ano">
+        </div>
+        <div>
+            <p>Selecione o seu serviço</p>
+            
+            <select name="" id="servicos">
+                <option value=""></option>
+                <option value="troca">Troca de Óleo</option>
+                <option value="limpar">Limpar a rebinboca da parafuseta</option>
+                <option value="pintar">Pintar</option>
+            </select>
+        </div>
+        <button onclick=mecanica()>Mandar</button>
+        <div id="exibir"></div>
+    </section>
+
+
+    <script>
+
+    const mecanica = () =>{
+        const carros = document.getElementById("nome").value
+        const exibir = document.getElementById("exibir")
+        const marca = document.getElementById("carros").value
+        const servicos = document.getElementById("servicos").value
+        
+        switch(servicos){
+            case "troca":
+                exibir.innerHTML = `
+                <h3>O seguinte serviço foi realizado no seu ${marca} ${carros}:</h3>
+                <p>Serviço: Troca de Óleo</p>
+                <p>Valor: R$100</p>` 
+                break
+            case "limpar":
+            exibir.innerHTML = `
+                <h3>O seguinte serviço foi realizado no seu ${marca} ${carros}:</h3>
+                <p>Serviço: Limpar a rebinboca da parafuseta</p>
+                <p>Valor: R$5000000000000</p>` 
+                break
+            exibir.innerHTML = `
+                <h3>O seguinte serviço foi realizado no seu ${marca} ${carros}:</h3>
+                <p>Serviço: Pintura</p>
+                <p>Valor: R$2</p>` 
+                break
+                default:
+                exibir.innerHTML = `Não deu` 
+        }
+        
+    }
+        
+    </script>
+</body>
+</html>
