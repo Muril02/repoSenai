@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispositivos</title>
+</head>
+<body>
+    <h1>Dispositivos</h1>
+
+<section>
+    <h3>Escreva o dispositivo que quer conhecer</h3>
+    <input type="text" id="dispositvoOp" onchange="mostrarDisp()">
+    <section>
+        <p id="mostrar"></p>
+    </section>
+    
+</section>
+
+    <script>
+        const mostrarDisp = () => {
+            const dispositivo = document.getElementById("dispositvoOp").value.toLowerCase()
+            const mostrar = document.getElementById("mostrar")
+            
+            if(dispositivo === "fita cassete"){
+                result =  `"A fita K7, também chamada de fita magnética, era utilizada por ser considerada uma das maneiras mais viáveis, ou seja, mais baratas, de armazenar informação. Essas informações poderiam ser textos, fotografias e sons. A tecnologia da gravação magnética era utilizada nos gravadores de fita K7, disquetes, discos rígidos e cartões magnéticos, mais conhecidos como cartões de créditos."`
+            }else if(dispositivo === "dvd"){
+                result =  `DVD é a sigla para Digital Versatile Disc ou Digital Video Disc. Trata-se de uma mídia para armazenamento de dados que também é bastante utilizada para distribuição de filmes. Neste texto, conhecerá os principais tipos de DVDs existentes - DVD-RAM, DVD-ROM, DVD-R, DVD+R, DVD-RW e DVD+RW - e outras características da tecnologia, como capacidades e controle geográfico.`
+            }else if(dispositivo === "cd"){
+                result =  `Um CD é, portanto, um elemento óptico gravado de maneira digital que é usado para armazenamento de informações. Pode-se gravar músicas, vídeos, documentos de texto e quaisquer outros dados em um CD.`
+            }
+
+            mostrar.innerHTML = result
+  
+        }
+
+    </script>
+</body>
+</html>

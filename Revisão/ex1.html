@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signos</title>
+</head>
+<body>
+    <h1>Signos legais</h1>
+
+<section>
+    <h3>Digite o número do mês que nasceu</h3>
+    <input type="number" id="numeroSigno" onchange="mostrarSigno()" min="1" max="12">
+    <h4 id="mostrar"></h4>
+</section>
+
+    <script>
+        const mostrarSigno = () => {
+            const mes = parseInt(document.getElementById("numeroSigno").value)
+            const mostrar = document.getElementById("mostrar")
+
+            switch(mes){
+                case 1: 
+               result = `O seu signo é Capricórnio e Aquário`
+                break
+                case 2: 
+               result = `O seu signo é Aquário e Peixes`
+                break
+                case 3: 
+               result = `O seu signo é Peixes e Áries`
+                break
+                case 4: 
+               result = `O seu signo é Áries e Touro`
+                break
+                case 5: 
+               result = `O seu signo é Touro e Gêmeos`
+                break
+                case 6: 
+               result = `O seu signo é Gêmeos e Câncer`
+                break
+                case 7: 
+               result = `O seu signo é Câncer e Leão`
+                break
+                case 8: 
+               result = `O seu signo é Leão e Virgem`
+                break
+                case 9: 
+               result = `O seu signo é Virgem e Libra`
+                break
+                case 10: 
+               result = `O seu signo é Libra e Escorpião`
+                break
+                case 11: 
+               result = `O seu signo é Escorpião e Sagitário`
+                break
+                default: 
+               result = `Mês inválido`
+                break
+            }
+            mostrar.innerHTML = result
+        }
+
+    </script>
+</body>
+</html>
