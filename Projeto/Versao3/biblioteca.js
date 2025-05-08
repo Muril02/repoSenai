@@ -1,5 +1,6 @@
 let biblioteca = []
 let livroParaAlternar = null
+let vendas = []
 
 const mostrarSecao = (secao) =>{
     //  Esconde todas as seções
@@ -7,6 +8,7 @@ const mostrarSecao = (secao) =>{
     document.getElementById("consulta").classList.add("hidden")
     document.getElementById("alterar").classList.add("hidden")
     document.getElementById("emprestimo").classList.add("hidden")
+    document.getElementById("venda").classList.add("hidden")
 
     // Mostra a seção selecionada
     document.getElementById(secao).classList.remove("hidden")
@@ -99,4 +101,62 @@ const fazerEmprestimo = () =>{
     }else{
         alert("Livro não encontrado")
     }
+}
+
+const registrarVenda = () =>{
+    const titulo = document.getElementById("venda-titulo").value
+    const preco = document.getElementById("venda-preco").value
+    const comprador = document.getElementById("venda-comprador").value
+
+    if(titulo && preco && comprador){
+        const listaVendas = document.getElementById("lista-vendas")
+        const item = document.createElement("li")
+        item.textContent = `Titulo: ${titulo}, Preço: ${preco}, Comprador: ${comprador}`
+        listaVendas.appendChild(item)
+        
+        vendas.push({titulo, preco, comprador})
+
+        document.getElementById("venda-titulo").value = ""
+        document.getElementById("venda-preco").value = ""
+        document.getElementById("venda-comprador").value = ""
+    }else{
+        alert("Por favor, preencher todos os campos")
+    }
+}
+
+const gerarRelatorio = () =>{
+    // document.getElementById("relatorio-vendas").classList.remove("hidden")
+    const tabelaRelatorio = document.getElementById("tabela-relatorio")
+    tabelaRelatorio.innerHTML = ''
+
+    if(vendas.length === 0){
+        alert("Nenhuma venda registrada")
+        return
+    }
+
+    let totalVendas = 0
+
+    if(totalVendas.length === 0){
+        alert("Valor de venda não registrado")
+        return
+    }
+
+    vendas.forEach((venda) =>{
+        const linha = document.createElement("tr")
+        linha.innerHTML = `<td>${venda.titulo}</td> <td>${parseFloat(venda.preco).toFixed(2)}</td> <td>${venda.comprador}</td>`
+        
+        tabelaRelatorio.appendChild(linha)
+        // Somar o preço ao total de vendas
+        totalVendas += parseFloat(venda.preco)
+    })
+
+    const linhaTotal = document.createElement("tr")
+    linhaTotal.innerHTML = `<td><strong>Total</strong></td>
+    <td><strong>R$${totalVendas.toFixed(2)}</strong></td>
+    <td></td>
+    `
+
+    tabelaRelatorio.appendChild(linhaTotal)
+
+    document.getElementById('relatorio-vendas').classList.remove("hidden")
 }
