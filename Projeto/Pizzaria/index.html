@@ -5,57 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DanielChurros Pizzaria</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous"> -->
 </head>
 <body>
+    
     <header class="flex-bet">
         <div>
             <h1>Pizzaria Bolada</h1>
         </div>
+
         <div class="flex-bet ">
-            <h3 class="selecTitulo"><a onclick='mudarSec("adicPizza")'>Adicionar Pizza</a></h3>
             <h3 class="selecTitulo"><a onclick="mudarSec('cardapio')">Cárdapio</a></h3>
             <h3 class="selecTitulo"><a onclick="mudarSec('quemSomos')">Quem somos</a></h3>
         </div>
     </header>
-
+    
+    
     <main>
 
         <div id="adicPizza" class="hidden flex-cent text-align">
            
-            <div>
-                <h3>Nome da Pizza</h3>
-                <div>
+            <div class="">
+                <div class="">
+                    <h3 class="">Nome da Pizza</h3>
                     <input type="text" id="nomePizza" placeholder="Digite o nome da pizza">
                 </div>
                 
-                <h3>Ingredientes</h3>
                 
                 <div class="">
-                    <input type="text" id="ingrediente1" placeholder="Digite o primeiro ingrediente" class="inputIngredi "><br>
+                    <h3 class=" ">Ingredientes</h3>
+                    <input type="text" id="ingrediente1" placeholder="Digite o primeiro ingrediente" class="inputIngredi"><br>
         
-                    <input type="text" id="ingrediente2" placeholder="Digite o segundo ingrediente" class=" inputIngredi"><br>
+                    <input type="text" id="ingrediente2" placeholder="Digite o segundo ingrediente" class="inputIngredi "><br>
         
                     <input type="text" id="ingrediente3" placeholder="Digite o terceiro ingrediente" class="inputIngredi">
                 </div>
                 
-                <div class="flex-bet">
-                    <div>
-                        <h3>Preço</h3>
-                        <input type="number" id="precoPizza" placeholder="Digite o preço" class="selecTitulo">
+                <div class="flex-cent">
+                    <div class="">
+                        <h3 class=" ">Preço</h3>
+                        <input type="number" id="precoPizza" placeholder="Digite o preço"
+                        step="1"  class="selecTitulo">
                     </div>
                 
-                    <div>
-                        <h3>Descrição</h3>
+                    <div class="">
+                        <h3 class="">Descrição</h3>
                     <input id="descricaoPizza" placeholder="Digite uma descrição">
                     </div>
                 </div>
                 <button onclick="registrarPizza()">Adicionar Pizza</button>
+                <div id="mensagemReg" class=""></div>
             </div>
         </div>
+     
 
 
+        <section id="cardapio" class="">
+        <div class="flex-cent">
+            <input type="text" id="pesquisa" placeholder="Pesquise sua pizza" onchange="pesquisar()">
+        </div>
+            
+            <button class="selecTitulo "><a onclick='mudarSec("adicPizza")'>Adicionar Pizza</a></button>
+            <div>
+                <h2 class="text-align">Cárdapio de pizzas</h2>
+                
+                <div class="flex-cent">
+                    <button  class="" onclick="exibirCard()">Ver Cardápio</button>
+                </div>
+                <div id="exibirCard" class="">
+                    
+                </div>
+            </div>
+        </section>
 
 
+        <section id="pedirPizza" class="hidden">
+            <div>
+               <h2>Fazer o pedido</h2> 
+                <div id="exibicao"></div>
+            </div>
+        </section>
 
 
     </main>

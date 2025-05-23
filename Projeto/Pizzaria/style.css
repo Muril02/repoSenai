@@ -17,6 +17,58 @@ input{
     border-radius: 6px;
 }
 
+button{
+    padding: 10px;
+    margin: 20px;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    background-color: red;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+
+        /* Cards */
+
+.card{
+    background-color: aliceblue;
+    width: 50%;
+    border-radius: 16px;
+    padding: 16px 0px;
+    box-shadow:2px 2px 5px lightslategray;
+}
+
+.tituloCard{
+    font-size: 1.4rem;
+}
+
+.ingredientesDiv{
+    font-size: .8rem;
+}
+
+.ingredientes{
+    font-weight:normal;
+}
+
+.descricao{
+    font-size: .5;
+    margin: 6px 0px;
+    font-weight: normal;
+}
+
+.geralCard{
+    margin: 20px 20px;
+}
+
+.editarExclu{
+    font-size: .9rem;
+    margin: 0px 7px;
+}
+
+
         /* Formatação de texto */
 
 .text-align{
@@ -31,6 +83,10 @@ input{
 .flex-cent{
     display: flex;
     justify-content: center;
+}
+.flex-end{
+    display: flex;
+    justify-content: end;
 }
 
 .teste{
@@ -50,8 +106,13 @@ input{
     margin: 0px 10px;
 }
 
-
+.strong{
+    font-weight: bold;
+}
 
 .hidden{
     display: none;
 }
+
+
+/* Bootstrap */

@@ -160,3 +160,41 @@ const gerarRelatorio = () =>{
 
     document.getElementById('relatorio-vendas').classList.remove("hidden")
 }
+
+const exibirMensagem = (texto, tipo) =>{
+    const mensagem = document.getElementById("mensagem")
+    mensagem.textContent = texto
+    // Adiciona a classe de estilo
+    mensagem.className = `Mensagem ${tipo}`
+    mensagem.classList.remove("hidden")
+
+    setTimeout(() =>{
+        mensagem.classList.add("hidden")
+    }, 3000)
+}
+
+
+const validarLogin = ()=>{
+    const usuario = document.getElementById("usuario").value
+    const senha = document.getElementById("senha").value
+
+    // Usuários e senha fixos para validação
+    // Pode subustituir por algo mais avançado
+
+    const usuarioCorreto = "Admin"
+    const senhaCorreta = "123"
+
+    console.log(usuario);
+    console.log(senha);
+    
+
+    if(usuario === usuarioCorreto && senha === senhaCorreta){
+        exibirMensagem("Login realizado com sucesso!", "sucesso")
+        setTimeout(() => {
+            // Redireciona para a página principal
+            window.location.href = "biblioteca.html"
+        }, 1000);
+    }else{
+        exibirMensagem("Usuário ou senha incorretos", "erro")
+    }
+}
