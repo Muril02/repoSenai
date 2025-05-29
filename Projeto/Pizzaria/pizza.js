@@ -1,11 +1,13 @@
 let pizzas = []
-
+let login = []
+let pizzaComprada = []
 // MUDAR SEÇÃO
 
 const mudarSec = (secao) =>{
     document.getElementById("adicPizza").classList.add("hidden")
     document.getElementById("cardapio").classList.add("hidden")
     document.getElementById("pedirPizza").classList.add("hidden")
+    document.getElementById("relatorio").classList.add("hidden")
     
     document.getElementById(secao).classList.remove("hidden")
 }
@@ -61,9 +63,11 @@ const mensagemRegistro = (text, tipo) =>{
 
 // CARDÁPIO
 
-const exibirCard = (pizzaPesquisa = pizzas) =>{
-    cards = ""
-
+const exibirCard = (pizzaPesquisa) =>{
+   let cards = ""
+   
+   if(pizzaPesquisa && pizzaPesquisa.length > 0){    
+    
     pizzaPesquisa.forEach(pizza => {
         let nome = pizza.nome
         let preco = pizza.preco
@@ -95,7 +99,47 @@ const exibirCard = (pizzaPesquisa = pizzas) =>{
     </div>
 </div>
         `
+        console.log("Foi a pizza filtrada");
+        console.log(pizzaPesquisa);
+        
+        
     });
+}else{
+     pizzas.forEach(pizza => {
+        let nome = pizza.nome
+        let preco = pizza.preco
+        cards +=`
+<div class='flex-cent'>
+    <div class=" geralCard card" id="cards">
+       <div class="text-align">
+            <div>
+                <div class="tituloCard ">
+                    <span class="">${pizza.nome} - <span class='strong'>R$${pizza.preco}</span></span>
+                </div>
+                <div class="ingredientesDiv">
+                    <span class='strong'>Ingredientes Principais: </span>
+                    <span class='ingredientes'>${pizza.ingrediente1}</span> - 
+                    <span class='ingredientes'>${pizza.ingrediente2}</span> - 
+                    <span class='ingredientes'>${pizza.ingrediente3}</span>
+                </div>
+                <div>
+                    <p class="descricao">${pizza.descricao}</p> 
+                </div>
+            </div>
+        </div>
+        <div class='flex-center'>
+            <div class='editarExclu'>
+                <a class='editarExclu' onclick='mudarSec("pedirPizza");pedirPizza("${nome}", ${preco})'>Pedir</a>
+                <span class='editarExclu'>Editar</span>
+            </div>
+        </div>
+    </div>
+</div>
+        `
+        console.log("Foi a pizza normal");
+        
+    });
+}
      document.getElementById("exibirCard").innerHTML = cards   
     
     
@@ -110,15 +154,41 @@ const pedirPizza = (nome, preco) =>{
             
     codigo +=`
              <div>
+                    
+                    <input class='teste' type="text" id="nomeUser" placeholder="Seu nome""><br>
                     <input type="text" id="nomePagar" placeholder="Nome da pizza" value="${nome}"><br>
                     <input type="numeric" id="precoPagar" placeholder="Valor da pizza" value="${preco}"><br>
+                    <button onClick='comprarPizza()'>Comprar pizza</button>
                </div>
-               <button onClick=''></button>
 
     `
-    document.getElementById("exibicao").innerHTML = codigo
+    
+        document.getElementById("exibicao").innerHTML = codigo
 }
 
+const comprarPizza = () =>{
+    let mensagem = document.getElementById("mensagemCompra")
+    let nomeUser = document.getElementById("nomeUser").value
+    let nomePizza = document.getElementById("nomePagar").value
+    let precoPagar = document.getElementById("precoPagar").value
+    
+    if(nomeUser == "" || nomePizza == "" || precoPagar == ""){
+        mensagem.innerHTML = "Preencha todos os campos"    
+    }else{
+        pizzaComprada.push({nomeUser, nomePizza, precoPagar})
+        
+        mensagem.innerHTML = `Pizza de ${nomePizza} comprada por ${precoPagar} pelo cliente ${nomeUser}`
+        
+                setTimeout(() =>{
+                mensagemTeste.classList.add("hidden")
+                mudarSec("cardapio")
+            }, 2000)
+            console.log("Deu Errado nessa porra");
+            
+    }
+    console.log(pizzaComprada);
+    
+}
 
 // LOGIN
 
@@ -141,7 +211,7 @@ const fazerLogin = () =>{
 
 
 const mensagem = (text, tipe) =>{
-    mensagemEx = document.getElementById("mensagem")
+   let mensagemEx = document.getElementById("mensagem")
 
     mensagemEx.textContent = text
     mensagemEx.className = `Mensagem tipo ${tipe}`
@@ -156,10 +226,28 @@ const mensagem = (text, tipe) =>{
 
 const pesquisar = () =>{
     pizzaPesquisada = document.getElementById("pesquisar").value
-
-    const pizzaRecebida = pizzas.filter((pizza) =>{
-       return pizza.nome.toLowerCase().includes(pizzaPesquisada.toLowerCase)
+    let pizzaRecebida = []
+    
+     pizzaRecebida = pizzas.filter((pizza) =>{
+       return pizza.nome.toLowerCase().includes(pizzaPesquisada.toLowerCase())
     })
 
-   exibirCard(pizzaRecebida)
+    exibirCard(pizzaRecebida)
+}
+
+// RELATÓRIO 
+
+const exibirRelatorio = () =>{
+    let compras = document.getElementById("exibirCompras")
+    let exibir = ""
+    pizzaComprada.forEach(pizza => {
+        exibir += `
+                    <div class='cardRelatorio'>
+                        <span><strong>Cliente: </strong>${pizza.nomeUser}</span><br>
+                        <span><strong>Pizza: </strong>${pizza.nomePizza}</span><br>
+                        <span><strong>Preço: R$ </strong>${pizza.precoPagar}</span><br>
+                    </div>
+        `
+        compras.innerHTML = exibir
+    });
 }

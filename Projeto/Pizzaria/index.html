@@ -15,13 +15,14 @@
         </div>
 
         <div class="flex-bet ">
-            <h3 class="selecTitulo"><a onclick="mudarSec('cardapio')">Cárdapio</a></h3>
+            <h3 class="selecTitulo"><a onclick="mudarSec('cardapio') , exibirCard()">Cárdapio</a></h3>
             <h3 class="selecTitulo"><a onclick="mudarSec('quemSomos')">Quem somos</a></h3>
+            <h3 class="selecTitulo"><a onclick="mudarSec('relatorio', exibirRelatorio())">Relatório</a></h3>
         </div>
     </header>
     
     
-    <main>
+    <main class="">
 
         <div id="adicPizza" class="hidden flex-cent text-align">
            
@@ -62,16 +63,16 @@
 
         <section id="cardapio" class="">
         <div class="flex-cent">
-            <input type="text" id="pesquisa" placeholder="Pesquise sua pizza" onchange="pesquisar()">
+            <input type="text" id="pesquisar" placeholder="Pesquise sua pizza" oninput="pesquisar()">
         </div>
             
             <button class="selecTitulo "><a onclick='mudarSec("adicPizza")'>Adicionar Pizza</a></button>
             <div>
                 <h2 class="text-align">Cárdapio de pizzas</h2>
                 
-                <div class="flex-cent">
+                <!-- <div class="flex-cent">
                     <button  class="" onclick="exibirCard()">Ver Cardápio</button>
-                </div>
+                </div> -->
                 <div id="exibirCard" class="">
                     
                 </div>
@@ -82,11 +83,19 @@
         <section id="pedirPizza" class="hidden">
             <div>
                <h2>Fazer o pedido</h2> 
-                <div id="exibicao"></div>
+                <div id="exibicao" class="flex-cent text-align"></div>
             </div>
         </section>
 
-
+        <section id="relatorio" class="hidden">
+            <div>
+                <h1 class="text-align">Pedidos feitos</h1>
+                <div id="exibirCompras" class="flex-cent text-align">
+                 
+                </div>
+                <div id="mensagemCompra"></div>
+            </div>
+        </section>
     </main>
 
 

@@ -31,11 +31,15 @@ button:hover{
 }
 
 
+.displayBlock{
+    display: block;
+}
+
         /* Cards */
 
 .card{
     background-color: aliceblue;
-    width: 50%;
+    width: 40%;
     border-radius: 16px;
     padding: 16px 0px;
     box-shadow:2px 2px 5px lightslategray;
@@ -115,4 +119,40 @@ button:hover{
 }
 
 
-/* Bootstrap */
+/* Login */
+
+.loginDisplay{
+    display: flex;
+    justify-self: center;
+    text-align: center;
+    background-color:#F2CED2;
+    border-radius: 20px;
+    
+    padding: 30px ;
+    box-shadow:2px 2px 5px lightslategray;
+}
+
+.htmlLogin{
+    min-height: 500px;
+    align-content: center;
+}
+
+.inputLogin{
+    margin: 5px auto;
+    border: none;
+}
+
+/* RELATORIO */
+
+.cardRelatorio{
+    background-color: aliceblue;
+    
+    border-radius: 16px;
+    padding: 30px;
+    margin: 0px 10px;
+    box-shadow:2px 2px 5px lightslategray;
+}
+
+.teste{
+        min-height: 500px;
+}

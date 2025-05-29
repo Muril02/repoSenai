@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
 <body>
-    <section>
+    
+    <main class="htmlLogin">
+    <section class="loginDisplay">
         <div>
-            <h4>Faça o Login</h4>
+            <h1>Faça o Login</h1>
             <div>
-                <input type="text" id="loginNome" placeholder="Digite seu usuário">
-                <input type="text" id="loginSenha" placeholder="Digite seu senha">
+                <input class="inputLogin" type="text" id="loginNome" placeholder="Digite seu usuário"><br>
+                <input class="inputLogin" type="text" id="loginSenha" placeholder="Digite seu senha">
             </div>
             <button onclick="fazerLogin()">Fazer Login</button>
             <div id="mensagem"></div>
         </div>
     </section>
-
+</main>
     <script src="pizza.js"></script>
 </body>
 </html>
