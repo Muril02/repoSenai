@@ -35,6 +35,12 @@ button:hover{
     display: block;
 }
 
+
+        /* Header */
+
+header{
+    margin: 20px;
+}
         /* Cards */
 
 .card{
@@ -153,6 +159,28 @@ button:hover{
     box-shadow:2px 2px 5px lightslategray;
 }
 
-.teste{
-        min-height: 500px;
+/* Comprar */
+
+.inputComprar{
+    margin: 5px auto;
+}
+
+/* HOME */
+
+.homeImg{
+    background-image: url(pizza.jpg);
+    width: 100%;
+    height: 600px;
+    z-index: 0;
+    position: relative;
+}
+
+.homeImg::before{
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

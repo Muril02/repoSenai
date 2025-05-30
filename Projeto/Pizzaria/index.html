@@ -9,19 +9,24 @@
 </head>
 <body>
     
-    <header class="flex-bet">
+    <header class="flex-bet ">
         <div>
-            <h1>Pizzaria Bolada</h1>
+            <h1 class="selecTitulo"><a onclick="mudarSec('home')">Pizzaria Bolada</h1>
         </div>
 
         <div class="flex-bet ">
             <h3 class="selecTitulo"><a onclick="mudarSec('cardapio') , exibirCard()">Cárdapio</a></h3>
-            <h3 class="selecTitulo"><a onclick="mudarSec('quemSomos')">Quem somos</a></h3>
+            <h3 ></a></h3>
             <h3 class="selecTitulo"><a onclick="mudarSec('relatorio', exibirRelatorio())">Relatório</a></h3>
         </div>
     </header>
     
-    
+    <section id="home" class="hidden">
+        <div>
+            <div> class="homeImg" alt=""></div>
+        </div>
+    </section>
+
     <main class="">
 
         <div id="adicPizza" class="hidden flex-cent text-align">
@@ -86,14 +91,21 @@
                 <div id="exibicao" class="flex-cent text-align"></div>
             </div>
         </section>
+        
+        <section id="editarPizza" class="hidden">
+            <div>
+               <h2>Fazer a edição</h2> 
+                <div id="exibicaoEditar" class="flex-cent text-align"></div>
+            </div>
+        </section>
 
         <section id="relatorio" class="hidden">
             <div>
                 <h1 class="text-align">Pedidos feitos</h1>
                 <div id="exibirCompras" class="flex-cent text-align">
                  
+                    <div></div>
                 </div>
-                <div id="mensagemCompra"></div>
             </div>
         </section>
     </main>

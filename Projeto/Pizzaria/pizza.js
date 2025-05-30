@@ -1,13 +1,18 @@
 let pizzas = []
 let login = []
 let pizzaComprada = []
+let alterarPizza = null
 // MUDAR SEÇÃO
 
 const mudarSec = (secao) =>{
     document.getElementById("adicPizza").classList.add("hidden")
     document.getElementById("cardapio").classList.add("hidden")
     document.getElementById("pedirPizza").classList.add("hidden")
+    document.getElementById("editarPizza").classList.add("hidden")
     document.getElementById("relatorio").classList.add("hidden")
+    document.getElementById("home").classList.add("hidden")
+
+    
     
     document.getElementById(secao).classList.remove("hidden")
 }
@@ -34,16 +39,19 @@ const registrarPizza = () =>{
         document.getElementById("descricaoPizza").value = ''
 
        mensagemRegistro("Sua pizza foi cadastrada!", "sucesso")
+          setTimeout(() =>{
+                mensagemTeste.classList.add("hidden")
+                mudarSec("cardapio")
+                exibirCard()
+            }, 1500)
+            console.log("Deu Errado nessa porra");
  
     }else{
         mensagemRegistro("Sua pizza não pode ser cadastrada", "erro")
     }
     
     console.log(pizzas);
-    console.log(ingrediente1);
-    console.log(ingrediente2);
-    console.log(ingrediente3);
-    console.log(preco);
+  
     
 }
 
@@ -93,7 +101,7 @@ const exibirCard = (pizzaPesquisa) =>{
         <div class='flex-center'>
             <div class='editarExclu'>
                 <a class='editarExclu' onclick='mudarSec("pedirPizza");pedirPizza("${nome}", ${preco})'>Pedir</a>
-                <span class='editarExclu'>Editar</span>
+                <span class='editarExclu' onclick='mudarSec("editarPizza");edicao("${nome}", ${preco}); pegarNomePizza()'>Editar</span>
             </div>
         </div>
     </div>
@@ -130,7 +138,7 @@ const exibirCard = (pizzaPesquisa) =>{
         <div class='flex-center'>
             <div class='editarExclu'>
                 <a class='editarExclu' onclick='mudarSec("pedirPizza");pedirPizza("${nome}", ${preco})'>Pedir</a>
-                <span class='editarExclu'>Editar</span>
+                <span class='editarExclu' onclick='mudarSec("editarPizza"); edicao("${nome}", ${preco}); pegarNomePizza()'>Editar</span>
             </div>
         </div>
     </div>
@@ -155,10 +163,11 @@ const pedirPizza = (nome, preco) =>{
     codigo +=`
              <div>
                     
-                    <input class='teste' type="text" id="nomeUser" placeholder="Seu nome""><br>
-                    <input type="text" id="nomePagar" placeholder="Nome da pizza" value="${nome}"><br>
-                    <input type="numeric" id="precoPagar" placeholder="Valor da pizza" value="${preco}"><br>
+                    <input class='inputComprar' type="text" id="nomeUser" placeholder="Seu nome"><br>
+                    <input class='inputComprar' type="text" id="nomePagar" placeholder="Nome da pizza" value="${nome}"><br>
+                    <input class='inputComprar' type="numeric" id="precoPagar" placeholder="Valor da pizza" value="${preco}"><br>
                     <button onClick='comprarPizza()'>Comprar pizza</button>
+                    <div id="mensagemCompra"></div>
                </div>
 
     `
@@ -177,7 +186,7 @@ const comprarPizza = () =>{
     }else{
         pizzaComprada.push({nomeUser, nomePizza, precoPagar})
         
-        mensagem.innerHTML = `Pizza de ${nomePizza} comprada por ${precoPagar} pelo cliente ${nomeUser}`
+        mensagem.innerHTML = `Pizza de ${nomePizza} comprada por R$${precoPagar} pelo cliente ${nomeUser}`
         
                 setTimeout(() =>{
                 mensagemTeste.classList.add("hidden")
@@ -189,6 +198,64 @@ const comprarPizza = () =>{
     console.log(pizzaComprada);
     
 }
+
+// EDITAR PIZZA
+
+const edicao = (nome, preco) =>{
+    codigoEditar = ""
+            
+    codigoEditar +=`
+             <div>
+                    <input class='inputComprar' type="text" id="nomePagar" placeholder="Nome da pizza" value="${nome}"><br>
+                    <input class='inputComprar' type="number" id="precoPagar" placeholder="Valor da pizza" value="${preco}"><br>
+                    <button onClick='editarPizza(); pegarNomePizza()'>Comprar pizza</button>
+                    <div id="mensagemEditar"></div>
+               </div>
+
+    `
+    
+        document.getElementById("exibicaoEditar").innerHTML = codigoEditar
+}
+
+
+const pegarNomePizza = () =>{
+    let nomePizza = document.getElementById("nomePagar").value
+    alterarPizza = pizzas.find((pizza) =>{
+            pizza.nome.toLowerCase().includes(nomePizza.toLowerCase())
+        })
+
+        
+        return alterarPizza
+        
+    }
+    console.log(alterarPizza);
+
+
+const editarPizza = () =>{
+    let mensagem = document.getElementById("mensagemEditar")
+    let nomePizza = document.getElementById("nomePagar").value
+    let precoPagar = document.getElementById("precoPagar").value
+    
+    if(nomePizza == "" || precoPagar == ""){
+        mensagem.innerHTML = "Erro nos campos"    
+    }else{
+        alterarPizza.nome = nomePizza
+        alterarPizza.preco = preco
+        
+        mensagem.innerHTML = `Pizza de ${nomePizza} alterada`
+        
+                setTimeout(() =>{
+                mensagemTeste.classList.add("hidden")
+                mudarSec("cardapio")
+            }, 2000)
+            console.log("Deu Errado nessa porra");
+            
+    }
+    console.log(pizzaAlterar);
+    
+}
+
+
 
 // LOGIN
 
@@ -240,6 +307,8 @@ const pesquisar = () =>{
 const exibirRelatorio = () =>{
     let compras = document.getElementById("exibirCompras")
     let exibir = ""
+    console.log(pizzaComprada);
+    
     pizzaComprada.forEach(pizza => {
         exibir += `
                     <div class='cardRelatorio'>
