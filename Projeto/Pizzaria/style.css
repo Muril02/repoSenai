@@ -45,10 +45,10 @@ header{
 
 .card{
     background-color: aliceblue;
-    width: 40%;
     border-radius: 16px;
     padding: 16px 0px;
     box-shadow:2px 2px 5px lightslategray;
+    width: 30%;
 }
 
 .tituloCard{
@@ -70,7 +70,8 @@ header{
 }
 
 .geralCard{
-    margin: 20px 20px;
+    margin: 20px;
+    text-align: center;
 }
 
 .editarExclu{
@@ -78,6 +79,9 @@ header{
     margin: 0px 7px;
 }
 
+.teste{
+    margin: 20px;
+}
 
         /* Formatação de texto */
 
@@ -90,9 +94,12 @@ header{
     justify-content: space-between;
     align-items: center;
 }
+
 .flex-cent{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 .flex-end{
     display: flex;
@@ -163,24 +170,4 @@ header{
 
 .inputComprar{
     margin: 5px auto;
-}
-
-/* HOME */
-
-.homeImg{
-    background-image: url(pizza.jpg);
-    width: 100%;
-    height: 600px;
-    z-index: 0;
-    position: relative;
-}
-
-.homeImg::before{
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }

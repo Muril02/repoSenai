@@ -2,6 +2,7 @@ let pizzas = []
 let login = []
 let pizzaComprada = []
 let alterarPizza = null
+let codigoEditar = ""
 // MUDAR SEÇÃO
 
 const mudarSec = (secao) =>{
@@ -44,7 +45,6 @@ const registrarPizza = () =>{
                 mudarSec("cardapio")
                 exibirCard()
             }, 1500)
-            console.log("Deu Errado nessa porra");
  
     }else{
         mensagemRegistro("Sua pizza não pode ser cadastrada", "erro")
@@ -116,13 +116,17 @@ const exibirCard = (pizzaPesquisa) =>{
      pizzas.forEach(pizza => {
         let nome = pizza.nome
         let preco = pizza.preco
+        let ingrediente1 = pizza.ingrediente1
+        let ingrediente2 = pizza.ingrediente2
+        let ingrediente3 = pizza.ingrediente3
+        let descricao = pizza.descricao
         cards +=`
 <div class='flex-cent'>
     <div class=" geralCard card" id="cards">
        <div class="text-align">
             <div>
                 <div class="tituloCard ">
-                    <span class="">${pizza.nome} - <span class='strong'>R$${pizza.preco}</span></span>
+                    <span class=""><span class='strong'>${pizza.nome}</span> - R$${pizza.preco}</span>
                 </div>
                 <div class="ingredientesDiv">
                     <span class='strong'>Ingredientes Principais: </span>
@@ -138,7 +142,7 @@ const exibirCard = (pizzaPesquisa) =>{
         <div class='flex-center'>
             <div class='editarExclu'>
                 <a class='editarExclu' onclick='mudarSec("pedirPizza");pedirPizza("${nome}", ${preco})'>Pedir</a>
-                <span class='editarExclu' onclick='mudarSec("editarPizza"); edicao("${nome}", ${preco}); pegarNomePizza()'>Editar</span>
+                <a class='editarExclu' onclick='mudarSec("editarPizza"); edicao("${nome}", ${preco},"${ingrediente1}", "${ingrediente2}", "${ingrediente3}", "${descricao}"); pegarNomePizza()'>Editar</a>
             </div>
         </div>
     </div>
@@ -192,7 +196,6 @@ const comprarPizza = () =>{
                 mensagemTeste.classList.add("hidden")
                 mudarSec("cardapio")
             }, 2000)
-            console.log("Deu Errado nessa porra");
             
     }
     console.log(pizzaComprada);
@@ -201,58 +204,68 @@ const comprarPizza = () =>{
 
 // EDITAR PIZZA
 
-const edicao = (nome, preco) =>{
-    codigoEditar = ""
-            
-    codigoEditar +=`
+const edicao = (nome, preco, descricao, ingrediente1, ingrediente2, ingrediente3) =>{
+   
+    codigoEditar =`
              <div>
                     <input class='inputComprar' type="text" id="nomePagar" placeholder="Nome da pizza" value="${nome}"><br>
                     <input class='inputComprar' type="number" id="precoPagar" placeholder="Valor da pizza" value="${preco}"><br>
-                    <button onClick='editarPizza(); pegarNomePizza()'>Comprar pizza</button>
+                    <input class='inputComprar' type="text" id="ingredienteEdit1" placeholder="Primeiro ingrediente" value="${ingrediente1}"><br>
+                    <input class='inputComprar' type="text" id="ingredienteEdit2" placeholder="Segundo ingrediente" value="${ingrediente2}"><br>
+                    <input class='inputComprar' type="text" id="ingredienteEdit3" placeholder="Terceiro ingrediente" value="${ingrediente3}"><br>
+                    <input class='inputComprar' type="text" id="descricaoEdit" placeholder="Descrição" value="${descricao}"><br>
+                    <button onClick='editarPizza(); pegarNomePizza()'>Editar pizza</button>
                     <div id="mensagemEditar"></div>
                </div>
 
     `
-    
-        document.getElementById("exibicaoEditar").innerHTML = codigoEditar
+    document.getElementById("exibicaoEditar").innerHTML = codigoEditar
 }
 
 
 const pegarNomePizza = () =>{
-    let nomePizza = document.getElementById("nomePagar").value
+    let nomeTeste = document.getElementById("nomePagar").value.toLowerCase()
     alterarPizza = pizzas.find((pizza) =>{
-            pizza.nome.toLowerCase().includes(nomePizza.toLowerCase())
+           return pizza.nome.toLowerCase().includes(nomeTeste)
         })
-
-        
-        return alterarPizza
+        console.log(alterarPizza);
+        console.log(nomeTeste);
         
     }
-    console.log(alterarPizza);
 
 
 const editarPizza = () =>{
     let mensagem = document.getElementById("mensagemEditar")
     let nomePizza = document.getElementById("nomePagar").value
-    let precoPagar = document.getElementById("precoPagar").value
+    let precoPagar = document.getElementById("precoPagar").value    
+    let ingredienteEdit1 = document.getElementById("ingredienteEdit1").value        
+    let ingredienteEdit2 = document.getElementById("ingredienteEdit2").value        
+    let ingredienteEdit3 = document.getElementById("ingredienteEdit3").value        
+    let descricaoEdit = document.getElementById("descricaoEdit").value    
     
+
     if(nomePizza == "" || precoPagar == ""){
-        mensagem.innerHTML = "Erro nos campos"    
-    }else{
+        mensagem.innerHTML = "Não é permitido nenhum campo em branco"    
+    }else if(alterarPizza){
         alterarPizza.nome = nomePizza
-        alterarPizza.preco = preco
-        
+        alterarPizza.preco = precoPagar
+        alterarPizza.ingrediente1 = ingredienteEdit1
+        alterarPizza.ingrediente2 = ingredienteEdit2
+        alterarPizza.ingrediente3 = ingredienteEdit3
+        alterarPizza.descricao = descricaoEdit
+    
+       
         mensagem.innerHTML = `Pizza de ${nomePizza} alterada`
         
                 setTimeout(() =>{
                 mensagemTeste.classList.add("hidden")
                 mudarSec("cardapio")
+                exibirCard()
             }, 2000)
             console.log("Deu Errado nessa porra");
             
     }
-    console.log(pizzaAlterar);
-    
+
 }
 
 
@@ -311,12 +324,12 @@ const exibirRelatorio = () =>{
     
     pizzaComprada.forEach(pizza => {
         exibir += `
-                    <div class='cardRelatorio'>
+                    <div class='cardRelatorio teste'>
                         <span><strong>Cliente: </strong>${pizza.nomeUser}</span><br>
                         <span><strong>Pizza: </strong>${pizza.nomePizza}</span><br>
                         <span><strong>Preço: R$ </strong>${pizza.precoPagar}</span><br>
                     </div>
         `
-        compras.innerHTML = exibir
     });
+    compras.innerHTML = exibir
 }
