@@ -109,7 +109,7 @@ const exibirCard = (pizzaPesquisa) =>{
         `
         console.log("Foi a pizza filtrada");
         console.log(pizzaPesquisa);
-        
+        document.getElementById("mensagemPesquisa").innerHTML = "Pizza encontrada!"
         
     });
 }else{
@@ -126,7 +126,7 @@ const exibirCard = (pizzaPesquisa) =>{
        <div class="text-align">
             <div>
                 <div class="tituloCard ">
-                    <span class=""><span class='strong'>${pizza.nome}</span> - R$${pizza.preco}</span>
+                      <span class="">${pizza.nome} - <span class='strong'>R$${pizza.preco}</span></span>
                 </div>
                 <div class="ingredientesDiv">
                     <span class='strong'>Ingredientes Principais: </span>
@@ -149,12 +149,10 @@ const exibirCard = (pizzaPesquisa) =>{
 </div>
         `
         console.log("Foi a pizza normal");
+        document.getElementById("exibirCard").innerHTML = cards
         
     });
 }
-     document.getElementById("exibirCard").innerHTML = cards   
-    
-    
 }
 
 
@@ -188,14 +186,22 @@ const comprarPizza = () =>{
     if(nomeUser == "" || nomePizza == "" || precoPagar == ""){
         mensagem.innerHTML = "Preencha todos os campos"    
     }else{
-        pizzaComprada.push({nomeUser, nomePizza, precoPagar})
+       pizzaSelect = pizzas.find((pizza) =>{
+             return pizza.nome.toLowerCase().includes(nomePizza.toLowerCase())
+        })
+        if(pizzaSelect){
+            pizzaComprada.push({nomeUser, nomePizza, precoPagar})
+
+            mensagem.innerHTML = `A compra da sua pizza de ${nomePizza} foi efetuada!`
+            
+                    setTimeout(() =>{
+                    mensagemTeste.classList.add("hidden")
+                    mudarSec("cardapio")
+                }, 2000)
+        }else{
+             mensagem.innerHTML = `Pizza inválida!`
+        }
         
-        mensagem.innerHTML = `Pizza de ${nomePizza} comprada por R$${precoPagar} pelo cliente ${nomeUser}`
-        
-                setTimeout(() =>{
-                mensagemTeste.classList.add("hidden")
-                mudarSec("cardapio")
-            }, 2000)
             
     }
     console.log(pizzaComprada);
@@ -262,7 +268,7 @@ const editarPizza = () =>{
                 mudarSec("cardapio")
                 exibirCard()
             }, 2000)
-            console.log("Deu Errado nessa porra");
+            
             
     }
 
@@ -280,21 +286,21 @@ const fazerLogin = () =>{
     senhaCorreta = "123"
 
     if(nome === nomeCorreto && login === senhaCorreta){
-        mensagem("Login feito com sucesso", "sucesso")
+        mensagem("Login feito com sucesso!", "sucesso")
         setTimeout ( () =>{
             window.location.href = "index.html"
         }, 1000)
     }else{
-        mensgem("Erro no login", "erro")
+        mensagem("Credenciais inválidas!", "erro")
     }
 }
 
 
-const mensagem = (text, tipe) =>{
+const mensagem = (text, type) =>{
    let mensagemEx = document.getElementById("mensagem")
 
     mensagemEx.textContent = text
-    mensagemEx.className = `Mensagem tipo ${tipe}`
+    mensagemEx.className = `Mensagem tipo ${type}`
     mensagemEx.classList.remove("hidden")
     setTimeout(() => {
         mensagemEx.classList.add("hidden")
@@ -313,6 +319,8 @@ const pesquisar = () =>{
     })
 
     exibirCard(pizzaRecebida)
+    console.log(pizzaRecebida);
+    
 }
 
 // RELATÓRIO 
