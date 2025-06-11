@@ -48,7 +48,7 @@ header{
     border-radius: 16px;
     padding: 16px 0px;
     box-shadow:2px 2px 5px lightslategray;
-    width: 30%;
+    width: 50%;
 }
 
 .tituloCard{
@@ -171,3 +171,5 @@ header{
 .inputComprar{
     margin: 5px auto;
 }
+
+

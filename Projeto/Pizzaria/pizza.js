@@ -1,7 +1,7 @@
 let pizzas = []
 let login = []
 let pizzaComprada = []
-let alterarPizza = null
+let alterarPizza;
 let codigoEditar = ""
 // MUDAR SEÇÃO
 
@@ -162,11 +162,14 @@ const exibirCard = (pizzaPesquisa) =>{
 const pedirPizza = (nome, preco) =>{
     codigo = ""
             
-    codigo +=`
+
+    codigo =`
              <div>
-                    
+                    <strong>Nome do cliente</strong><br>
                     <input class='inputComprar' type="text" id="nomeUser" placeholder="Seu nome"><br>
-                    <input class='inputComprar' type="text" id="nomePagar" placeholder="Nome da pizza" value="${nome}"><br>
+                    <h4>Pizza selecionada</h4>
+                    <input class='inputComprar' type="text" id="nomePagar" placeholder="Nome da pizza" value="${nome}">
+                    <h4>Valor da pizza</h4>
                     <input class='inputComprar' type="numeric" id="precoPagar" placeholder="Valor da pizza" value="${preco}"><br>
                     <button onClick='comprarPizza()'>Comprar pizza</button>
                     <div id="mensagemCompra"></div>
@@ -175,6 +178,19 @@ const pedirPizza = (nome, preco) =>{
     `
     
         document.getElementById("exibicao").innerHTML = codigo
+
+            let lockNome = document.getElementById("nomePagar")
+        lockNome.addEventListener('keydown', e => e.preventDefault());   
+        lockNome.addEventListener('paste', e => e.preventDefault());    
+        lockNome.addEventListener('cut', e => e.preventDefault());       
+     lockNome.addEventListener('drop', e => e.preventDefault());   
+            
+            let lockPagar = document.getElementById("precoPagar")
+        lockPagar.addEventListener('keydown', e => e.preventDefault());   
+        lockPagar.addEventListener('paste', e => e.preventDefault());    
+        lockPagar.addEventListener('cut', e => e.preventDefault());       
+     lockPagar.addEventListener('drop', e => e.preventDefault());   
+
 }
 
 const comprarPizza = () =>{
@@ -182,6 +198,7 @@ const comprarPizza = () =>{
     let nomeUser = document.getElementById("nomeUser").value
     let nomePizza = document.getElementById("nomePagar").value
     let precoPagar = document.getElementById("precoPagar").value
+    
     
     if(nomeUser == "" || nomePizza == "" || precoPagar == ""){
         mensagem.innerHTML = "Preencha todos os campos"    
@@ -210,12 +227,30 @@ const comprarPizza = () =>{
 
 // EDITAR PIZZA
 
+const editarPizzaHandler = () => {
+    pegarNomePizza(); // Call this first to set alterarPizza
+    editarPizza(); // Then call editarPizza
+};
+
+
+const pegarNomePizza = () =>{
+    
+    let nomeTeste = document.getElementById("nomePagarEdicao").value.toLowerCase()
+    alterarPizza = pizzas.find((pizza) =>{
+           return pizza.nome.toLowerCase().includes(nomeTeste)
+        })
+        console.log(alterarPizza);
+        console.log(nomeTeste);
+        
+    }
+
+
 const edicao = (nome, preco, descricao, ingrediente1, ingrediente2, ingrediente3) =>{
    
     codigoEditar =`
              <div>
-                    <input class='inputComprar' type="text" id="nomePagar" placeholder="Nome da pizza" value="${nome}"><br>
-                    <input class='inputComprar' type="number" id="precoPagar" placeholder="Valor da pizza" value="${preco}"><br>
+                    <input class='inputComprar' type="text" id="nomePagarEdicao" placeholder="Nome da pizza" value="${nome}"><br>
+                    <input class='inputComprar' type="number" id="precoPagarEdicao" placeholder="Valor da pizza" value="${preco}"><br>
                     <input class='inputComprar' type="text" id="ingredienteEdit1" placeholder="Primeiro ingrediente" value="${ingrediente1}"><br>
                     <input class='inputComprar' type="text" id="ingredienteEdit2" placeholder="Segundo ingrediente" value="${ingrediente2}"><br>
                     <input class='inputComprar' type="text" id="ingredienteEdit3" placeholder="Terceiro ingrediente" value="${ingrediente3}"><br>
@@ -229,29 +264,25 @@ const edicao = (nome, preco, descricao, ingrediente1, ingrediente2, ingrediente3
 }
 
 
-const pegarNomePizza = () =>{
-    let nomeTeste = document.getElementById("nomePagar").value.toLowerCase()
-    alterarPizza = pizzas.find((pizza) =>{
-           return pizza.nome.toLowerCase().includes(nomeTeste)
-        })
-        console.log(alterarPizza);
-        console.log(nomeTeste);
-        
-    }
 
 
 const editarPizza = () =>{
     let mensagem = document.getElementById("mensagemEditar")
-    let nomePizza = document.getElementById("nomePagar").value
-    let precoPagar = document.getElementById("precoPagar").value    
+    let nomePizza = document.getElementById("nomePagarEdicao").value
+    let precoPagar = document.getElementById("precoPagarEdicao").value    
     let ingredienteEdit1 = document.getElementById("ingredienteEdit1").value        
     let ingredienteEdit2 = document.getElementById("ingredienteEdit2").value        
     let ingredienteEdit3 = document.getElementById("ingredienteEdit3").value        
     let descricaoEdit = document.getElementById("descricaoEdit").value    
     
-
+    console.log(nomePizza);
+    console.log(precoPagar);
+    console.log(ingredienteEdit1);
+    console.log(ingredienteEdit2);
+    console.log(ingredienteEdit3);
+    
     if(nomePizza == "" || precoPagar == ""){
-        mensagem.innerHTML = "Não é permitido nenhum campo em branco"    
+        mensagem.innerHTML = "Não é permitido nenhum campo em branco!"    
     }else if(alterarPizza){
         alterarPizza.nome = nomePizza
         alterarPizza.preco = precoPagar
@@ -261,7 +292,7 @@ const editarPizza = () =>{
         alterarPizza.descricao = descricaoEdit
     
        
-        mensagem.innerHTML = `Pizza de ${nomePizza} alterada`
+        mensagem.innerHTML = `Pizza de ${nomePizza} alterada!`
         
                 setTimeout(() =>{
                 mensagemTeste.classList.add("hidden")
