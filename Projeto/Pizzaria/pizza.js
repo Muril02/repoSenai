@@ -333,9 +333,9 @@ const exibirRelatorio = () =>{
     pizzaComprada.forEach(pizza => {
         exibir += `
                     <div class='cardRelatorio teste'>
-                        <span><strong>Cliente: </strong>${pizza.nomeUser}</span><br>
-                        <span><strong>Pizza: </strong>${pizza.nomePizza}</span><br>
-                        <span><strong>Preço: R$ </strong>${pizza.precoPagar}</span><br>
+                        <span>Cliente: <strong>${pizza.nomeUser}</strong></span><br>
+                        <span>Pizza: <strong>${pizza.nomePizza}</strong></span><br>
+                        <span>Preço:  <strong>R$ ${pizza.precoPagar}</strongca></span><br>
                     </div>
         `
 
