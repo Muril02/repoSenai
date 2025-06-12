@@ -11,7 +11,7 @@
     
     <header class="flex-bet ">
         <div>
-            <h1 class="selecTitulo"><a onclick="mudarSec('home')">Pizzaria Bolada</h1>
+                <img src="Logo Pizza Planet2.png" alt="" class="img">
         </div>
 
         <div class="flex-bet ">
@@ -37,17 +37,7 @@
                     <input type="text" id="nomePizza" placeholder="Digite o nome da pizza">
                 </div>
                 
-                
                 <div class="">
-                    <h3 class=" ">Ingredientes</h3>
-                    <input type="text" id="ingrediente1" placeholder="Digite o primeiro ingrediente" class="inputIngredi"><br>
-        
-                    <input type="text" id="ingrediente2" placeholder="Digite o segundo ingrediente" class="inputIngredi "><br>
-        
-                    <input type="text" id="ingrediente3" placeholder="Digite o terceiro ingrediente" class="inputIngredi">
-                </div>
-                
-                <div class="flex-cent">
                     <div class="">
                         <h3 class=" ">Preço</h3>
                         <input type="number" id="precoPizza" placeholder="Digite o preço"
@@ -68,7 +58,7 @@
 
         <section id="cardapio" class="">
         <div class="flex-cent">
-            <input type="text" id="pesquisar" placeholder="Pesquise sua pizza" onchange="pesquisar()"> 
+            <input type="text" id="pesquisar" placeholder="Pesquise sua pizza" oninput="pesquisar()"> 
         </div>
         <div id="mensagemPesquisa" class="text-align"></div>
             
@@ -89,7 +79,9 @@
         <section id="pedirPizza" class="hidden">
             <div>
                <h2 class="text-align">Fazer o pedido</h2> 
-                <div id="exibicao" class="flex-cent text-align"></div>
+                <div id="exibicao" class="flex-cent text-align">
+                    
+                </div>
             </div>
         </section>
         
@@ -105,8 +97,8 @@
                 <h1 class="text-align">Pedidos feitos</h1>
                 <div id="exibirCompras" class="flex-cent text-align">
                  
-                    <div></div>
                 </div>
+                <div id="total" class="text-align"></div>
             </div>
         </section>
     </main>

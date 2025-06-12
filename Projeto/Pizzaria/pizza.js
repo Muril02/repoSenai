@@ -23,19 +23,13 @@ const mudarSec = (secao) =>{
 
 const registrarPizza = () =>{
     const nome = document.getElementById("nomePizza").value
-    const ingrediente1 = document.getElementById("ingrediente1").value
-    const ingrediente2 = document.getElementById("ingrediente2").value
-    const ingrediente3 = document.getElementById("ingrediente3").value
     const preco = (document.getElementById("precoPizza")).value.toString()
     const descricao = document.getElementById("descricaoPizza").value
 
-    if(nome && ingrediente1 && ingrediente2 && ingrediente3 && preco && descricao !== ''){
-        pizzas.push({nome, ingrediente1, ingrediente2, ingrediente3, preco, descricao})
+    if(nome && preco && descricao !== ''){
+        pizzas.push({nome, descricao, preco})
 
         document.getElementById("nomePizza").value = ''
-        document.getElementById("ingrediente1").value = ''
-        document.getElementById("ingrediente2").value = ''
-        document.getElementById("ingrediente3").value = ''
         document.getElementById("precoPizza").value = ''
         document.getElementById("descricaoPizza").value = ''
 
@@ -87,12 +81,6 @@ const exibirCard = (pizzaPesquisa) =>{
                 <div class="tituloCard ">
                     <span class="">${pizza.nome} - <span class='strong'>R$${pizza.preco}</span></span>
                 </div>
-                <div class="ingredientesDiv">
-                    <span class='strong'>Ingredientes Principais: </span>
-                    <span class='ingredientes'>${pizza.ingrediente1}</span> - 
-                    <span class='ingredientes'>${pizza.ingrediente2}</span> - 
-                    <span class='ingredientes'>${pizza.ingrediente3}</span>
-                </div>
                 <div>
                     <p class="descricao">${pizza.descricao}</p> 
                 </div>
@@ -109,16 +97,18 @@ const exibirCard = (pizzaPesquisa) =>{
         `
         console.log("Foi a pizza filtrada");
         console.log(pizzaPesquisa);
-        document.getElementById("mensagemPesquisa").innerHTML = "Pizza encontrada!"
+        document.getElementById("mensagemPesquisa").innerHTML = "Pizza encontrada!"   
+        setTimeout(() =>{
+                 document.getElementById("mensagemPesquisa").classList.add("hidden")   
+                }, 2000)
+      
         
     });
+    document.getElementById("exibirCard").innerHTML = cards
 }else{
      pizzas.forEach(pizza => {
         let nome = pizza.nome
         let preco = pizza.preco
-        let ingrediente1 = pizza.ingrediente1
-        let ingrediente2 = pizza.ingrediente2
-        let ingrediente3 = pizza.ingrediente3
         let descricao = pizza.descricao
         cards +=`
 <div class='flex-cent'>
@@ -128,12 +118,6 @@ const exibirCard = (pizzaPesquisa) =>{
                 <div class="tituloCard ">
                       <span class="">${pizza.nome} - <span class='strong'>R$${pizza.preco}</span></span>
                 </div>
-                <div class="ingredientesDiv">
-                    <span class='strong'>Ingredientes Principais: </span>
-                    <span class='ingredientes'>${pizza.ingrediente1}</span> - 
-                    <span class='ingredientes'>${pizza.ingrediente2}</span> - 
-                    <span class='ingredientes'>${pizza.ingrediente3}</span>
-                </div>
                 <div>
                     <p class="descricao">${pizza.descricao}</p> 
                 </div>
@@ -142,16 +126,16 @@ const exibirCard = (pizzaPesquisa) =>{
         <div class='flex-center'>
             <div class='editarExclu'>
                 <a class='editarExclu' onclick='mudarSec("pedirPizza");pedirPizza("${nome}", ${preco})'>Pedir</a>
-                <a class='editarExclu' onclick='mudarSec("editarPizza"); edicao("${nome}", ${preco},"${ingrediente1}", "${ingrediente2}", "${ingrediente3}", "${descricao}"); pegarNomePizza()'>Editar</a>
+                <a class='editarExclu' onclick='mudarSec("editarPizza"); edicao("${nome}", ${preco}, "${descricao}"); pegarNomePizza()'>Editar</a>
             </div>
         </div>
     </div>
 </div>
         `
         console.log("Foi a pizza normal");
-        document.getElementById("exibirCard").innerHTML = cards
         
     });
+    document.getElementById("exibirCard").innerHTML = cards
 }
 }
 
@@ -228,8 +212,8 @@ const comprarPizza = () =>{
 // EDITAR PIZZA
 
 const editarPizzaHandler = () => {
-    pegarNomePizza(); // Call this first to set alterarPizza
-    editarPizza(); // Then call editarPizza
+    pegarNomePizza(); 
+    editarPizza(); 
 };
 
 
@@ -240,59 +224,27 @@ const pegarNomePizza = () =>{
            return pizza.nome.toLowerCase().includes(nomeTeste)
         })
         console.log(alterarPizza);
-        console.log(nomeTeste);
         
     }
 
 
-const edicao = (nome, preco, descricao, ingrediente1, ingrediente2, ingrediente3) =>{
-   
-    codigoEditar =`
-             <div>
-                    <input class='inputComprar' type="text" id="nomePagarEdicao" placeholder="Nome da pizza" value="${nome}"><br>
-                    <input class='inputComprar' type="number" id="precoPagarEdicao" placeholder="Valor da pizza" value="${preco}"><br>
-                    <input class='inputComprar' type="text" id="ingredienteEdit1" placeholder="Primeiro ingrediente" value="${ingrediente1}"><br>
-                    <input class='inputComprar' type="text" id="ingredienteEdit2" placeholder="Segundo ingrediente" value="${ingrediente2}"><br>
-                    <input class='inputComprar' type="text" id="ingredienteEdit3" placeholder="Terceiro ingrediente" value="${ingrediente3}"><br>
-                    <input class='inputComprar' type="text" id="descricaoEdit" placeholder="Descrição" value="${descricao}"><br>
-                    <button onClick='editarPizza(); pegarNomePizza()'>Editar pizza</button>
-                    <div id="mensagemEditar"></div>
-               </div>
-
-    `
-    document.getElementById("exibicaoEditar").innerHTML = codigoEditar
-}
-
-
-
-
-const editarPizza = () =>{
+    const editarPizza = () =>{
     let mensagem = document.getElementById("mensagemEditar")
     let nomePizza = document.getElementById("nomePagarEdicao").value
-    let precoPagar = document.getElementById("precoPagarEdicao").value    
-    let ingredienteEdit1 = document.getElementById("ingredienteEdit1").value        
-    let ingredienteEdit2 = document.getElementById("ingredienteEdit2").value        
-    let ingredienteEdit3 = document.getElementById("ingredienteEdit3").value        
+    let precoPagar = document.getElementById("precoPagarEdicao").value         
     let descricaoEdit = document.getElementById("descricaoEdit").value    
-    
     console.log(nomePizza);
-    console.log(precoPagar);
-    console.log(ingredienteEdit1);
-    console.log(ingredienteEdit2);
-    console.log(ingredienteEdit3);
+    
     
     if(nomePizza == "" || precoPagar == ""){
         mensagem.innerHTML = "Não é permitido nenhum campo em branco!"    
     }else if(alterarPizza){
         alterarPizza.nome = nomePizza
         alterarPizza.preco = precoPagar
-        alterarPizza.ingrediente1 = ingredienteEdit1
-        alterarPizza.ingrediente2 = ingredienteEdit2
-        alterarPizza.ingrediente3 = ingredienteEdit3
         alterarPizza.descricao = descricaoEdit
     
        
-        mensagem.innerHTML = `Pizza de ${nomePizza} alterada!`
+        mensagem.innerHTML = `Pizza de alterada!`
         
                 setTimeout(() =>{
                 mensagemTeste.classList.add("hidden")
@@ -303,6 +255,21 @@ const editarPizza = () =>{
             
     }
 
+}
+
+const edicao = (nome, preco, descricao) =>{
+   
+    codigoEditar =`
+             <div>
+                    <input class='inputComprar' type="text" id="nomePagarEdicao" placeholder="Nome da pizza" value="${nome}"><br>
+                    <input class='inputComprar' type="number" id="precoPagarEdicao" placeholder="Valor da pizza" value="${preco}"><br>
+                    <input class='inputComprar' type="text" id="descricaoEdit" placeholder="Descrição" value="${descricao}"><br>
+                    <button onClick='editarPizza()'>Editar pizza</button>
+                    <div id="mensagemEditar"></div>
+               </div>
+
+    `
+    document.getElementById("exibicaoEditar").innerHTML = codigoEditar
 }
 
 
@@ -358,7 +325,9 @@ const pesquisar = () =>{
 
 const exibirRelatorio = () =>{
     let compras = document.getElementById("exibirCompras")
+    let total = document.getElementById("total")
     let exibir = ""
+    let valor = 0
     console.log(pizzaComprada);
     
     pizzaComprada.forEach(pizza => {
@@ -369,6 +338,11 @@ const exibirRelatorio = () =>{
                         <span><strong>Preço: R$ </strong>${pizza.precoPagar}</span><br>
                     </div>
         `
+
+         valor += parseFloat(pizza.precoPagar);
     });
     compras.innerHTML = exibir
+    total.innerHTML = `<strong>Valor total: R$${valor}</strong>`
+
+    
 }
